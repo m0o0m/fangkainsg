@@ -3,7 +3,7 @@
         "isLandscape":false,
         "name":"FangKaiNSG",
         "width":460,
-        "height":440,
+        "height":680,
         "entry":"main.js",
         "forwardConsolePort":10088,
         "forwardDebugPort":10086,

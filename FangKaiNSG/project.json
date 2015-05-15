@@ -12,6 +12,11 @@
     "jsList":[
         "src/zfs/Default.js",
         "src/resource.js",
-        "src/app.js"
+        "src/app.js",
+        "src/zfs/Sg_Music.js",
+        "src/zfs/Sg_Login.js",
+        "src/zfs/Sg_Map.js",
+        "src/zfs/Sg_Card.js",
+        "src/zfs/Sg_Fight.js"
     ]
 }
