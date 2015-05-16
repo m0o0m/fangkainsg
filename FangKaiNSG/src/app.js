@@ -5,6 +5,7 @@ var HelloWorldLayer = cc.Layer.extend(
     {
         this._super();
         var login = new Sg_Login(); 
+//        var login = new Sg_Fight(); 
         this.addChild(login, 0);
     },
     onEnter:function()

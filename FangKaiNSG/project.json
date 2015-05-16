@@ -17,6 +17,7 @@
         "src/zfs/Sg_Login.js",
         "src/zfs/Sg_Map.js",
         "src/zfs/Sg_Card.js",
+        "src/zfs/Sg_Skill.js",
         "src/zfs/Sg_Fight.js"
     ]
 }

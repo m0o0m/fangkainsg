@@ -12,11 +12,39 @@ var Sg_Music =
 	},
 	playFight:function()
 	{
-		cc.audioEngine.playEffect("res/audio/fight.mp3", true);
+		var bgm = [
+		           "res/audio/bgm/music01.mp3",
+		           "res/audio/bgm/music02.mp3",
+		           "res/audio/bgm/music03.mp3",
+		           "res/audio/bgm/music04.mp3",
+		           "res/audio/bgm/music05.mp3",
+		           "res/audio/bgm/music06.mp3",
+		           "res/audio/bgm/music07.mp3",
+		           "res/audio/bgm/music08.mp3",
+		           "res/audio/bgm/music09.mp3",
+		           "res/audio/bgm/music10.mp3",
+		           "res/audio/bgm/music11.mp3",
+		           "res/audio/bgm/music12.mp3",
+		           "res/audio/bgm/music13.mp3",
+		           "res/audio/bgm/music14.mp3",
+		           "res/audio/bgm/music15.mp3",
+		           "res/audio/bgm/music16.mp3",
+		           "res/audio/fight.mp3"
+		           ];
+		var mm = Math.floor(Math.random()*bgm.length);
+		cc.audioEngine.playEffect(bgm[mm], true);
 	},
 	playWalk:function()
 	{
-		return cc.audioEngine.playEffect("res/audio/effect/walk01.mp3",true);
+		cc.audioEngine.playEffect("res/audio/effect/walk01.mp3",false);
+	},
+	playAttack:function()
+	{
+		cc.audioEngine.playEffect("res/audio/effect/bullet_2.mp3", false);
+	},
+	playDead:function()
+	{
+		cc.audioEngine.playEffect("res/audio/overture/saveme.mp3", false);
 	},
 	stopEffect:function(id)
 	{
