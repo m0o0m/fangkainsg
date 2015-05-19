@@ -71,11 +71,6 @@ var Sg_Card = ccui.Layout.extend(
 	},
 	playAttackAction:function() 
 	{
-//		if ( this.angerValue >= 75 )
-//		{
-//			this.playSkill();
-//			return;
-//		}
 		var scaleN = 1.1;
 		var rotate01 = cc.rotateTo(0.1,-20);
 		var rotate02 = cc.rotateBy(0.1,30);
@@ -92,27 +87,33 @@ var Sg_Card = ccui.Layout.extend(
 		this.runAction(elastic);
 		Sg_Music.playAttack();
 	},
-	playSkill:function()
+	playSkillAction:function()
 	{
+		var scaleN = 1.1;
+		var blink = cc.Blink.create(0.4, 3);
+		var scale01  = cc.scaleTo(0.1, scaleN, scaleN);
+		var scale02  = cc.scaleTo(0.1, 1, 1);
+		var sequence = cc.sequence(scale01, scale02);
+		this.runAction(blink);
+		this.runAction(sequence.repeat(2));
+	},
+	playSkill:function(target)
+	{
+		Sg_Music.playThunder();
+		var point = target.getParent().convertToWorldSpace(target.getPosition());
+		cc.log(this.type+"  "+this.type);
+		var skill = this.that.skill.getTrailSkill();
 		if ( this.type === 1 )
 		{
-			this.playSkill01();
+			skill.setAnchorPoint(0.5, 0.1);
 		}
 		else
 		{
-			this.playSkill02();
+			skill.setRotation(180);
+			skill.setAnchorPoint(0.5, 0.15);
 		}
-	},
-	playSkill01:function()
-	{
-		var skill = this.that.skill.getTrailSkill();
-		skill.setAnchorPoint(0.5, 1);
-		skill.setRotation(180);
-		skill.setPosition(this.width/2, this.height/2);
-		this.addChild(skill, 100);
-	},
-	playSkill02:function(point)
-	{
+		skill.setPosition(cc.p(point.x+target.width/2, point.y));
+		this.that.addChild(skill, 100);
 	},
 	stopWalkAction:function()
 	{
@@ -129,7 +130,11 @@ var Sg_Card = ccui.Layout.extend(
 	},
 	setBloodParent:function()
 	{
-		var blood = this.bloodSlider.getPercent()-Math.random()*50;
+		var blood = this.bloodSlider.getPercent()-Math.random()*100;
+		if ( this.type === 1 )
+		{
+			blood = this.bloodSlider.getPercent() - 5;
+		}
 		this.bloodSlider.setPercent(blood);
 		if ( this.bloodSlider.getPercent() <= 0 )
 		{
