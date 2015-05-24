@@ -32,7 +32,7 @@ var Sg_Music =
 		           "res/audio/fight.mp3"
 		           ];
 		var mm = Math.floor(Math.random()*bgm.length);
-		cc.audioEngine.playEffect(bgm[mm], true);
+		cc.audioEngine.playMusic(bgm[mm], true);
 	},
 	playWalk:function()
 	{
@@ -45,6 +45,10 @@ var Sg_Music =
 	playDead:function()
 	{
 		cc.audioEngine.playEffect("res/audio/overture/saveme.mp3", false);
+	},
+	playThunder:function()
+	{
+		cc.audioEngine.playEffect("res/audio/effect/bullet_5.mp3", false);
 	},
 	stopEffect:function(id)
 	{

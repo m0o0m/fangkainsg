@@ -168,7 +168,7 @@ var Sg_Fight = ccui.Layout.extend(
 	},
 	play_move:function(distance)
 	{ 
-		var moveTo = cc.moveTo(3, cc.p(0, -distance));
+		var moveTo = cc.moveTo(2, cc.p(0, -distance));
 		var callFunc = cc.callFunc(function()
 		{
 			this.stopWalk();
@@ -206,29 +206,33 @@ var Sg_Fight = ccui.Layout.extend(
 			this.isFight = false;
 			this.m++; this.n++;
 			this.jugementMN();
-			this.cardA[this.m].playAttackAction();
+//			this.cardA[this.m].playAttackAction();
+			this.cardA[this.m].playSkillAction();
 			if ( this.cardB.length < 1)
 			{
 				this.cardC[this.n].setBloodParent();
+				this.cardC[this.n].playSkill(this.cardC[this.n]);
 			}
 			else
 			{
 				this.cardB[this.n].setBloodParent();
+				this.cardB[this.n].playSkill(this.cardB[this.n]);
 			}
-			
 		}
 		else
 		{
 			this.isFight = true;
 			this.jugementMN();
 			this.cardA[this.m].setBloodParent();
-			if ( this.cardB.length < 1)
+			this.cardA[this.m].playSkill(this.cardA[this.m]);
+			if ( this.cardB.length < 1 )
 			{
 				this.cardC[this.n].playAttackAction();
 			}
 			else
 			{
-				this.cardB[this.n].playAttackAction();
+//				this.cardB[this.n].playAttackAction();
+				this.cardB[this.n].playSkillAction();
 			}
 		}
 	},
