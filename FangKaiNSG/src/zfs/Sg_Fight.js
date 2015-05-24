@@ -132,7 +132,7 @@ var Sg_Fight = ccui.Layout.extend(
 		}
 		if ( state === ccui.Widget.TOUCH_ENDED )
 		{
-			this.schedule(this.startFight, 1);
+			this.schedule(this.startFight, 0.3);
 			target.removeFromParent();
 		}
 	},
@@ -168,7 +168,7 @@ var Sg_Fight = ccui.Layout.extend(
 	},
 	play_move:function(distance)
 	{ 
-		var moveTo = cc.moveTo(5, cc.p(0, -distance));
+		var moveTo = cc.moveTo(3, cc.p(0, -distance));
 		var callFunc = cc.callFunc(function()
 		{
 			this.stopWalk();

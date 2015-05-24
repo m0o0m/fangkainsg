@@ -129,7 +129,14 @@ var Sg_Card = ccui.Layout.extend(
 	},
 	setBloodParent:function()
 	{
-		var blood = this.bloodSlider.getPercent()-Math.random()*50;
+		if ( this.type === 1 )
+		{
+			var blood = this.bloodSlider.getPercent()-Math.random()*20;
+		}
+		else
+		{
+			var blood = this.bloodSlider.getPercent()-Math.random()*50;
+		}
 		this.bloodSlider.setPercent(blood);
 		if ( this.bloodSlider.getPercent() <= 0 )
 		{
