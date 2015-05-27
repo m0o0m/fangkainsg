@@ -20,6 +20,13 @@ var GameHelpLayout = ccui.Layout.extend(
 		this.zinit();
 		this.setBackButton();
 	},
+	//初始化
+	zinit:function()
+	{
+		this.setSize(Def.windowSize());
+		var bg = new myImage(res.helpbg);
+		this.addChild(bg, 0);
+	},
 	//还回按钮
 	setBackButton:function()
 	{
@@ -34,19 +41,15 @@ var GameHelpLayout = ccui.Layout.extend(
 	{
 		if ( state === ccui.Widget.TOUCH_BEGAN )
 		{
+			//播放按钮音效
 			Music.playSelected();
 		}
 		if( state === ccui.Widget.TOUCH_ENDED )
 		{
+			//还回到初始化场景
 			var newGameScene = GameInitializeScene.createScene();
 			cc.director.runScene(cc.TransitionFade.create(1, newGameScene));
 		}
-	},
-	zinit:function()
-	{
-		this.setSize(Def.windowSize());
-		var bg = new myImage(res.helpbg);
-		this.addChild(bg, 0);
 	}
 });
 //实例化场景

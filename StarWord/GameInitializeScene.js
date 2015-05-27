@@ -17,10 +17,13 @@ Cocos2d-js 之消灭星星第二讲，游戏菜单选择场景:
 
 三、场景实现技术分析：
 1、UI布局：将场景中的图片、文本、按钮、粒子放置到给定的位置。
-2、动作实现：场景中将两种动作（moveTo,EaseElasticOut)结合起来使用，而不是单一的移动或弹出，这样会给玩家一种绚丽的感觉；对动作的控制可以按个人的审美调整（如：时间，坐标）。
+2、动作实现：场景中将两种动作（moveTo,EaseElasticOut)结合起来使用，而不是单一的移动或弹出，这样会给玩家一种绚丽的感觉；对动作的控制可以
+按个人的审美调整（如：时间，坐标）。
 3、粒子特效：粒子特效的贴图实现，粒子系统的实例化，以及粒子系统的位置设定；
-4、定时器：设置定时器（schedule(...)来控制粒子效果的实例化，在该场景每隔一段时间就会实例化一次粒子爆炸效果，玩家视线内场景中的粒子不会完全消失；通过定时器不断的产出粒子，是游戏看起来更加绚丽。
-5、音效：该场景右上角的喇叭按钮用来控制整个游戏背景音乐的播放和停止(cc.audioEngine.playMusic(...))；然后就是按钮点击的音效播放（cc.audioEngine.playEffect(...)以及粒子方法的音效。
+4、定时器：设置定时器（schedule(...)来控制粒子效果的实例化，在该场景每隔一段时间就会实例化一次粒子爆炸效果，玩家视线内场景中的粒子不会完
+全消失；通过定时器不断的产出粒子，是游戏看起来更加绚丽。
+5、音效：该场景右上角的喇叭按钮用来控制整个游戏背景音乐的播放和停止(cc.audioEngine.playMusic(...))；然后就是按钮点击的音效播放
+（cc.audioEngine.playEffect(...)以及粒子方法的音效。
 
 四、游戏代码及注释：
 GameInitializeScene类
@@ -29,16 +32,22 @@ GameInitializeScene类
  */
 var GameInitializeScene = ccui.Layout.extend(
 {
-	size:null,//布局尺寸
 	ctor:function()
 	{
 		this._super();
+		this.setVariable();//基本属性设置
 		this.zinit();//初始化函数
 		this.setTopInfor();//顶部显示静态图片和文本等
 		this.setBlinkAction();//图片及动作
 		this.setGameButton();//按钮及动作
 		this.setParticleSys();//粒子特效
 		this.schedule(this.playExplosion, 1);//定时器、控制粒子特效的播放
+	},
+	//基本属性设置
+	setVariable:function()
+	{
+		PlayerDate = PlayerLocalData.getItem();//从本地读取数据
+		this.maxScore = PlayerDate.mScore;//游戏最高得分
 	},
 	//初始化函数
 	zinit:function()
@@ -52,8 +61,6 @@ var GameInitializeScene = ccui.Layout.extend(
 		this.addChild(backGround, 0);
 		var backGround1 = new myImage(res.mainbackbottom);
 		this.addChild(backGround1, 0);
-		this.playerGameData = playerGameData;
-		this.maxScore = this.playerGameData.maxScore;//游戏最高得分
 	},
 	//设置游戏场景顶部显示信息(最高纪录、声音控制)
 	setTopInfor:function()
@@ -158,7 +165,7 @@ var GameInitializeScene = ccui.Layout.extend(
 		var moveTo4 = cc.MoveTo.create(2, cc.p(endX, d));
 		var easeOut4 = moveTo4.clone().easing(cc.easeElasticOut());
 		exitGameBtn.runAction(easeOut4);
-		
+		//为按钮注册监听器
 		newGameBtn.addTouchEventListener(this.btnControlGameFunc, this);
 		continueGameBtn.addTouchEventListener(this.btnControlGameFunc, this);
 		helpGameBtn.addTouchEventListener(this.btnControlGameFunc, this);
