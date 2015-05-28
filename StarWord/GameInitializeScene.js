@@ -33,16 +33,22 @@ GameInitializeScene类
  */
 var GameInitializeScene = ccui.Layout.extend(
 {
-	size:null,//布局尺寸
 	ctor:function()
 	{
 		this._super();
+		this.setVariable();//基本属性设置
 		this.zinit();//初始化函数
 		this.setTopInfor();//顶部显示静态图片和文本等
 		this.setBlinkAction();//图片及动作
 		this.setGameButton();//按钮及动作
 		this.setParticleSys();//粒子特效
 		this.schedule(this.playExplosion, 1);//定时器、控制粒子特效的播放，每隔一秒函数执行一次
+	},
+	//基本属性设置
+	setVariable:function()
+	{
+		PlayerDate = PlayerLocalData.getItem();//从本地读取数据
+		this.maxScore = PlayerDate.mScore;//游戏最高得分
 	},
 	//初始化函数
 	zinit:function()
@@ -56,8 +62,6 @@ var GameInitializeScene = ccui.Layout.extend(
 		this.addChild(backGround, 0);
 		var backGround1 = new myImage(res.mainbackbottom);
 		this.addChild(backGround1, 0);
-		this.playerGameData = playerGameData;
-		this.maxScore = this.playerGameData.maxScore;//游戏最高得分
 	},
 	//设置游戏场景顶部显示信息(最高纪录、声音控制)
 	setTopInfor:function()
@@ -162,7 +166,7 @@ var GameInitializeScene = ccui.Layout.extend(
 		var moveTo4 = cc.MoveTo.create(2, cc.p(endX, d));
 		var easeOut4 = moveTo4.clone().easing(cc.easeElasticOut());
 		exitGameBtn.runAction(easeOut4);
-		
+		//为按钮注册监听器
 		newGameBtn.addTouchEventListener(this.btnControlGameFunc, this);
 		continueGameBtn.addTouchEventListener(this.btnControlGameFunc, this);
 		helpGameBtn.addTouchEventListener(this.btnControlGameFunc, this);

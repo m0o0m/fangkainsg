@@ -21,8 +21,22 @@ Cocos2d-js 之消灭星星第一讲，开发前准备
 起来的，同时与本类也是相对独立的；只要将耦合其他类的接口注释掉就可以了；每一个类的功能都可以单独的测试，整套主题将
 按照游戏的流程来讲解。
 
-四、游戏中有部分通用的自定义组件及颜色的设定等，单独写在了一个GameUtil.js的文件中；这样做的目的是方便统一管理，
-可以做到一对多的控制效果，为各个js文件调用提供统一接口，具体内容如下：
+四、项目架构：
+
+1、GameInitializeScene		初始化场景
+2、GameHelpLayout			帮助场景
+3、GameMainScene			主场景
+4、GameTransitionScene		过度场景
+5、GameTopInformation		主场景顶部信息层
+6、GameCreateStar			星星构造器
+7、GameParticleSys			粒子系统
+8、GameStarLayout			操作星星层
+9、GameUtil					工具类
+10、levelData				关卡配置
+11、PlayerLocalData			本地保存用户信息
+
+五、游戏中有部分通用的自定义组件及颜色的设定等，单独写在了一个工具类GameUtil.js的文件中；这样做的目的是方便统一管理，可以做到一对多的控制
+效果，为各个js文件调用提供统一接口，具体内容如下：
 GameUtil类
 /*
  * 通用颜色
@@ -181,6 +195,4 @@ var Def = {
 		return cc.sys.os;
 	}
 };
-
-
 在后面的章节中如果看到myText, myButton, myImage等可千万别说这是神马东西。
