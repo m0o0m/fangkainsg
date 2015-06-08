@@ -76,37 +76,29 @@ var Sg_Fight = ccui.Layout.extend(
 		var foodImg = ccui.ImageView.create("res/fight/icon_piece.png");
 		foodImg.setPosition(foodImg.width, layout.height/2);
 		layout.addChild(foodImg, 1);
-		var foodTxt = ccui.Text.create();
-		foodTxt.setFontSize(24);
+		var foodTxt = cc.LabelTTF.create("999", "", 24);
 		foodTxt.setAnchorPoint(0, 0.5);
-		foodTxt.setText(999);
 		foodTxt.setPosition(foodImg.x + foodImg.width, foodImg.y);
 		layout.addChild(foodTxt, 1);
 		
 		var soulImg = ccui.ImageView.create("res/fight/icon_soul.png");
 		soulImg.setPosition(190, layout.height/2);
 		layout.addChild(soulImg, 1);
-		var soulTxt = ccui.Text.create();
-		soulTxt.setFontSize(24);
+		var soulTxt = cc.LabelTTF.create("999", "", 24);
 		soulTxt.setAnchorPoint(0, 0.5);
-		soulTxt.setText(999);
 		soulTxt.setPosition(soulImg.x + soulImg.width, soulImg.y);
 		layout.addChild(soulTxt, 1);
 		
 		var moneyImg = ccui.ImageView.create("res/fight/icon_money.png");
 		moneyImg.setPosition(360, layout.height/2);
 		layout.addChild(moneyImg, 1);
-		var moneyTxt = ccui.Text.create();
-		moneyTxt.setFontSize(24);
+		var moneyTxt = cc.LabelTTF.create("999", "", 24);
 		moneyTxt.setAnchorPoint(0, 0.5);
-		moneyTxt.setText(999);
 		moneyTxt.setPosition(moneyImg.x + moneyImg.width, moneyImg.y);
 		layout.addChild(moneyTxt, 1);
 		
-		var huiheTxt = ccui.Text.create();
-		huiheTxt.setFontSize(24);
+		var huiheTxt = cc.LabelTTF.create("回合：0/30", "", 24);
 		huiheTxt.setAnchorPoint(1, 0.5);
-		huiheTxt.setText("回合：0/30");
 		huiheTxt.setPosition(this.width-20, moneyImg.y);
 		layout.addChild(huiheTxt, 1);
 	},
