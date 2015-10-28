@@ -1,0 +1,33 @@
+143213213
+using UnityEngine;
+using System.Collections;
+//命名空间：一个封装好的代码类库，由一个特殊的名字表示，只有在该名称下才能使用类库中的类和方法；
+
+public class Controler : MonoBehaviour
+{
+	private int currentID = ConstOfMenu.MainID;
+	MonoBehaviour[] script;
+
+	public void Awake()
+	{
+		script = GetComponents<MonoBehaviour>();
+	}
+
+	public void Update()
+	{
+		if ( Input.GetKeyDown( KeyCode.Escape ) )
+		{
+			EscapeEvent();
+		}
+	}
+
+	public void ChangeScript( int offID, int onID )
+	{
+		restData();
+		script[offID].enabled = false;
+		script[onID].enabled = true;
+		currentID = onID;
+	}
+} 
+
+
